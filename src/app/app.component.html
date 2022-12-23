@@ -9,18 +9,28 @@
     <input type="text" name="lastname" ngModel/>
     
     <p>Enter Date Of Birth</p>
-    <input type="date" name="Dob" id="" [(ngModel)]="DateOfB" *ngIf="displayDate"/>
+      <input type="date" name="Dob" id="" [(ngModel)]="DateOfB" *ngIf="displayDate"/>
 
     <label>Cities</label>
-    <select ngModel name="cityDropdown">
-      <option [value]="city.id" *ngFor="let city of cities" #sagar>
-        {{ city.city }}
-      </option>
+      <select ngModel name="cityDropdown">
+        <option [value]="city.id" *ngFor="let city of cities" #sagar>
+          <!-- {{ city.city }} -->
+        </option>
     </select>
+
+      <div>
+          <input id="male" type="radio" value="male" name="gender" formControlName="gender">
+          <label for="male">Male</label>
+      </div>
+      <div>
+          <input id="female" type="radio" value="female" name="gender" formControlName="gender">
+          <label for="female">Female</label>
+      </div>
+      
     <button type="submit">Submit</button>
   </div>
 </form>
-{{fname}}
+<!-- {{fname}}
 
-{{DateOfB | date:'dd-MM-yyyy'}}
+{{DateOfB | date:'dd-MM-yyyy'}} -->
 <!-- {{cities|json}} -->
