@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,134 +8,61 @@ import { NgForm } from '@angular/forms';
 })
 export class AppComponent {
   title = 'form-registration';
-  fname: string = '';
-  DateOfB: string = '';
-  displayDate = false;
-  cities = [
-    { id: '0', city: 'Mumbai' },
-    { id: '7', city: 'Pune' },
-    { id: '12', city: 'Nagpur' },
-    { id: '15', city: 'Thane' },
-    { id: '24', city: 'Nashik' },
-    { id: '28', city: 'Kalyan-Dombivali' },
-    { id: '29', city: 'Vasai-Virar' },
-    { id: '49', city: 'Solapur' },
-    { id: '56', city: 'Mira-Bhayandar' },
-    { id: '58', city: 'Bhiwandi' },
-    { id: '61', city: 'Amravati' },
-    { id: '72', city: 'Nanded-Waghala' },
-    { id: '76', city: 'Sangli' },
-    { id: '86', city: 'Malegaon' },
-    { id: '91', city: 'Akola' },
-    { id: '98', city: 'Latur' },
-    { id: '99', city: 'Dhule' },
-    { id: '105', city: 'Ahmednagar' },
-    { id: '122', city: 'Ichalkaranji' },
-    { id: '138', city: 'Parbhani' },
-    { id: '164', city: 'Panvel' },
-    { id: '278', city: 'Yavatmal' },
-    { id: '292', city: 'Achalpur' },
-    { id: '293', city: 'Osmanabad' },
-    { id: '295', city: 'Nandurbar' },
-    { id: '306', city: 'Satara' },
-    { id: '310', city: 'Wardha' },
-    { id: '316', city: 'Udgir' },
-    { id: '320', city: 'Aurangabad' },
-    { id: '344', city: 'Amalner' },
-    { id: '354', city: 'Akot' },
-    { id: '359', city: 'Pandharpur' },
-    { id: '365', city: 'Shrirampur' },
-    { id: '367', city: 'Parli' },
-    { id: '409', city: 'Washim' },
-    { id: '423', city: 'Ambejogai' },
-    { id: '435', city: 'Manmad' },
-    { id: '450', city: 'Ratnagiri' },
-    { id: '462', city: 'Uran Islampur' },
-    { id: '466', city: 'Pusad' },
-    { id: '502', city: 'Sangamner' },
-    { id: '508', city: 'Shirpur-Warwade' },
-    { id: '512', city: 'Malkapur' },
-    { id: '524', city: 'Wani' },
-    { id: '538', city: 'Lonavla' },
-    { id: '551', city: 'Talegaon Dabhade' },
-    { id: '552', city: 'Anjangaon' },
-    { id: '572', city: 'Umred' },
-    { id: '589', city: 'Palghar' },
-    { id: '590', city: 'Shegaon' },
-    { id: '603', city: 'Ozar' },
-    { id: '607', city: 'Phaltan' },
-    { id: '621', city: 'Yevla' },
-    { id: '625', city: 'Shahade' },
-    { id: '640', city: 'Vita' },
-    { id: '649', city: 'Umarkhed' },
-    { id: '657', city: 'Warora' },
-    { id: '670', city: 'Pachora' },
-    { id: '673', city: 'Tumsar' },
-    { id: '687', city: 'Manjlegaon' },
-    { id: '689', city: 'Sillod' },
-    { id: '697', city: 'Arvi' },
-    { id: '707', city: 'Nandura' },
-    { id: '719', city: 'Vaijapur' },
-    { id: '724', city: 'Wadgaon Road' },
-    { id: '735', city: 'Sailu' },
-    { id: '747', city: 'Murtijapur' },
-    { id: '755', city: 'Tasgaon' },
-    { id: '760', city: 'Mehkar' },
-    { id: '779', city: 'Yawal' },
-    { id: '782', city: 'Pulgaon' },
-    { id: '787', city: 'Nilanga' },
-    { id: '790', city: 'Wai' },
-    { id: '799', city: 'Umarga' },
-    { id: '809', city: 'Paithan' },
-    { id: '810', city: 'Rahuri' },
-    { id: '816', city: 'Nawapur' },
-    { id: '823', city: 'Tuljapur' },
-    { id: '835', city: 'Morshi' },
-    { id: '841', city: 'Purna' },
-    { id: '855', city: 'Satana' },
-    { id: '877', city: 'Pathri' },
-    { id: '880', city: 'Sinnar' },
-    { id: '890', city: 'Uchgaon' },
-    { id: '900', city: 'Uran' },
-    { id: '903', city: 'Pen' },
-    { id: '913', city: 'Karjat' },
-    { id: '927', city: 'Manwath' },
-    { id: '930', city: 'Partur' },
-    { id: '947', city: 'Sangole' },
-    { id: '956', city: 'Mangrulpir' },
-    { id: '967', city: 'Risod' },
-    { id: '977', city: 'Shirur' },
-    { id: '983', city: 'Savner' },
-    { id: '984', city: 'Sasvad' },
-    { id: '988', city: 'Pandharkaoda' },
-    { id: '992', city: 'Talode' },
-    { id: '993', city: 'Shrigonda' },
-    { id: '997', city: 'Shirdi' },
-    { id: '1000', city: 'Raver' },
-    { id: '1003', city: 'Mukhed' },
-    { id: '1007', city: 'Rajura' },
-    { id: '1010', city: 'Vadgaon Kasba' },
-    { id: '1023', city: 'Tirora' },
-    { id: '1047', city: 'Mahad' },
-    { id: '1069', city: 'Lonar' },
-    { id: '1088', city: 'Sawantwadi' },
-    { id: '1092', city: 'Pathardi' },
-    { id: '1102', city: 'Pauni' },
-    { id: '1104', city: 'Ramtek' },
-    { id: '1109', city: 'Mul' },
-    { id: '1131', city: 'Soyagaon' },
-    { id: '1135', city: 'Mangalvedhe' },
-    { id: '1152', city: 'Narkhed' },
-    { id: '1154', city: 'Shendurjana' },
-    { id: '1172', city: 'Patur' },
-    { id: '1176', city: 'Mhaswad' },
-    { id: '1187', city: 'Loha' },
-    { id: '1203', city: 'Nandgaon' },
-    { id: '1212', city: 'Warud' },
+  firstName: string = '';
+  lastName: string = '';
+  dob: string = '';
+  selectedState: string = '';
+  selectedGender: string = '';
+  states = [
+    { name: 'Andhra Pradesh', value: 'AP' },
+    { name: 'Arunachal Pradesh', value: 'AR' },
+    { name: 'Assam', value: 'AS' },
+    { name: 'Bihar', value: 'BR' },
+    { name: 'Chhattisgarh', value: 'CG' },
+    { name: 'Goa', value: 'GA' },
+    { name: 'Gujarat', value: 'GJ' },
+    { name: 'Haryana', value: 'HR' },
+    { name: 'Himachal Pradesh', value: 'HP' },
+    { name: 'Jammu and Kashmir', value: 'JK' },
+    { name: 'Jharkhand', value: 'JH' },
+    { name: 'Karnataka', value: 'KA' },
+    { name: 'Kerala', value: 'KL' },
+    { name: 'Madhya Pradesh', value: 'MP' },
+    { name: 'Maharashtra', value: 'MH' },
+    { name: 'Manipur', value: 'MN' },
+    { name: 'Meghalaya', value: 'ML' },
+    { name: 'Mizoram', value: 'MZ' },
+    { name: 'Nagaland', value: 'NL' },
+    { name: 'Odisha', value: 'OD' },
+    { name: 'Punjab', value: 'PB' },
+    { name: 'Rajasthan', value: 'RJ' },
+    { name: 'Sikkim', value: 'SK' },
+    { name: 'Tamil Nadu', value: 'TN' },
+    { name: 'Telangana', value: 'TG' },
+    { name: 'Tripura', value: 'TR' },
+    { name: 'Uttar Pradesh', value: 'UP' },
+    { name: 'Uttarakhand', value: 'UK' },
+    { name: 'West Bengal', value: 'WB' },
   ];
+  submitted = false;
+  submittedData: {
+    firstName: string;
+    lastName: string;
+    dob: string;
+
+    selectedState: string;
+    selectedGender: string;
+  }[] = [];
 
   onSubmit(form: NgForm) {
-    this.displayDate = true;
-    console.log(form);
+    this.submitted = true;
+    this.submittedData.push({
+      firstName: this.firstName,
+      lastName: this.lastName,
+      dob: this.dob,
+      selectedState: this.selectedState,
+      selectedGender: this.selectedGender,
+    });
+    form.reset();
   }
 }
