@@ -1,81 +1,130 @@
 <div class="container">
   <form (ngSubmit)="onSubmit(form)" #form="ngForm">
-      <div class="col text-center p-2 mb-3">
-        <span class="fs-3">Register</span>
-      </div>
-      <div class="form-group m-2">
+    <div class="col text-center p-2 mb-3">
+      <span class="fs-3">Register</span>
+    </div>
+    <div class="row">
+      <div class="col m-2 mb-3">
         <label for="firstName">First Name</label>
-        <input type="text" class="form-control" placeholder="Enter First Name" id="firstName" [(ngModel)]="firstName" 
-          name="firstName" required>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter First Name"
+          id="firstName"
+          [(ngModel)]="firstName"
+          name="firstName"
+          required
+        />
       </div>
-      <div class="form-group m-2">
+      <div class="col m-2 mb-3">
         <label for="lastName">Last Name</label>
-        <input type="text" class="form-control" placeholder="Enter Last Name" id="lastName" [(ngModel)]="lastName" 
-        name="lastName" required>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Enter Last Name"
+          id="lastName"
+          [(ngModel)]="lastName"
+          name="lastName"
+          required
+        />
       </div>
-      <div class="form-group m-2">
+    </div>
+    <div class="row">
+
+      <div class="col m-2 mb-3">
         <label for="dob">Date of Birth</label>
-        <input type="text" class="form-control" onfocus="(this.type='date')" name="dob" 
-          placeholder="Enter your Date Of Birth" id="dob" [(ngModel)]="dob" required>
+        <input
+          type="text"
+          class="form-control"
+          onfocus="(this.type='date')"
+          name="dob"
+          placeholder="Enter your Date Of Birth"
+          id="dob"
+          [(ngModel)]="dob"
+          required
+        />
       </div>
-      <div class="form-group m-2">
+      <div class="col m-2 mb-3">
         <label for="state">State</label>
-        <select class="form-control" id="state" [(ngModel)]="selectedState" name="state" required>
+        <select
+          class="form-control"
+          id="state"
+          [(ngModel)]="selectedState"
+          name="state"
+          required
+        >
           <option value="" disabled>Please select your state</option>
-          <option *ngFor="let state of states" 
-          [value]="state.name">{{ state.name }}</option>
+          <option *ngFor="let state of states" [value]="state.name">
+            {{ state.name }}
+          </option>
         </select>
       </div>
-    <div class="form-group m-2">
-          <label>Gender</label>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" id="male" [(ngModel)]="selectedGender" 
-              name="gender" value="Male" required>
-              <label class="form-check-label" for="male">
-              Male
-              </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" id="female" 
-              [(ngModel)]="selectedGender" name="gender" value="Female" required>
-              <label class="form-check-label" for="female">
-                Female
-              </label>
-          </div>
+    </div>
+    <div class="col m-2 mb-3">
+      <label>Gender</label>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          id="male"
+          [(ngModel)]="selectedGender"
+          name="gender"
+          value="Male"
+          required
+        />
+        <label class="form-check-label" for="male"> Male </label>
+      </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          id="female"
+          [(ngModel)]="selectedGender"
+          name="gender"
+          value="Female"
+          required
+        />
+        <label class="form-check-label" for="female"> Female </label>
+      </div>
 
-          <div class="form-check">
-            <input class="form-check-input" type="radio" id="other" 
-              [(ngModel)]="selectedGender" name="gender" value="other" required>
-            <label class="form-check-label" for="other">
-              Other
-            </label>
-          </div>
+      <div class="form-check">
+        <input
+          class="form-check-input"
+          type="radio"
+          id="other"
+          [(ngModel)]="selectedGender"
+          name="gender"
+          value="other"
+          required
+        />
+        <label class="form-check-label" for="other"> Other </label>
+      </div>
 
-          <div class="text-center">
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </div>
-    
-          <div *ngIf="submitted" class="mt-3">
-            <h4>Submitted Data:</h4>
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>DOB</th>
-                  <th>State</th>
-                  <th>Gender</th>
-                </tr>
-              </thead>
-              <tbody> 
-                <tr *ngFor="let data of submittedData">
-                  <td>{{ data.firstName }} {{ data.lastName }}</td>
-                  <td>{{data.dob | date: 'dd/MM/yyyy' }}</td>
-                  <td>{{ data.selectedState }}</td>
-                  <td>{{ data.selectedGender }}</td>
-                </tr>
-              </tbody>
-            </table>
-        </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+
+      <div *ngIf="submitted" class="mt-3">
+        <h4>Submitted Data:</h4>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>DOB</th>
+              <th>State</th>
+              <th>Gender</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of submittedData">
+              <td>{{ data.firstName }} {{ data.lastName }}</td>
+              <td>{{ data.dob | date : "dd/MM/yyyy" }}</td>
+              <td>{{ data.selectedState }}</td>
+              <td>{{ data.selectedGender }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </form>
 </div>

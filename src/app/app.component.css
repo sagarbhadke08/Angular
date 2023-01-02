@@ -8,4 +8,6 @@ form{
     width: 600px;
     border: 1px solid hsl(216, 29%, 76%);
     border-radius: 10px; 
+    background-color: #daeeea;
+   
 }
